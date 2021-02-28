@@ -8,4 +8,6 @@
 *.zip
 *.tar.gz
 *.rar
+out/
+.idea/
 SDJ2_1.iml
