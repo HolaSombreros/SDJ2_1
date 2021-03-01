@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SettingsViewController">
    <children>
       <Label alignment="CENTER" prefHeight="59.0" prefWidth="600.0" text="Settings">
          <font>
@@ -151,7 +150,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="341.0" text="Error Label" textFill="#fc0505">
+                  <Label fx:id="errorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="341.0" text="Error Label" textFill="#fc0505">
                      <font>
                         <Font size="18.0" />
                      </font>
