@@ -3,6 +3,8 @@ package model;
 public class Radiator
 {
   private HeatState heatState;
+  private double highTemperature;
+  private double lowTemperature;
 
   public Radiator()
   {
@@ -29,8 +31,28 @@ public class Radiator
     this.heatState = heatState;
   }
 
-  public String status()
+  public String getStatus()
   {
     return heatState.getState();
+  }
+
+  public void setHighTemperature(double highTemperature)
+  {
+    this.highTemperature = highTemperature;
+  }
+
+  public double getHighTemperature()
+  {
+    return highTemperature;
+  }
+
+  public void setLowTemperature(double lowTemperature)
+  {
+    this.lowTemperature = lowTemperature;
+  }
+
+  public double getLowTemperature()
+  {
+    return lowTemperature;
   }
 }
