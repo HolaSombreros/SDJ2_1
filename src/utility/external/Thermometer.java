@@ -34,17 +34,16 @@ public class Thermometer implements Runnable
     }
   }
 
-  /** Calculating the internal temperature in one of two locations.
+  /**
+   * Calculating the internal temperature in one of two locations.
    * This includes a term from a heater (depending on location and * heaters power), and a term from an outdoor heat loss.
    * Values are only valid in the outdoor temperature range [-20; 20]
-   * and when s, the number of seconds between each measurements are* between 4 and 8 seconds.
+   * and when s, the number of seconds between each measurements are between 4 and 8 seconds.
    * @param t  the last measured temperature
-   * @param p  the heaters power {0, 1, 2 or 3}
-   *    where 0 is turned off, 1 is low, 2 is medium and 3 is high
-   * @param d  the distance between heater and measurements {1 or 7}
-   *    where 1 is close to the heater and 7 is in the opposite corner
+   * @param p  the heaters power {0, 1, 2 or 3} where 0 is turned off, 1 is low, 2 is medium and 3 is high
+   * @param d  the distance between heater and measurements {1 or 7} where 1 is close to the heater and 7 is in the opposite corner
    * @param t0 the outdoor temperature (valid in the range [-20; 20])
-   * @param s the number of seconds since last measurement[4; 8]
+   * @param s  the number of seconds since last measurement[4; 8]
    * @return the temperature
    */
   public double temperature(double t, int p, int d, double t0, int s)
