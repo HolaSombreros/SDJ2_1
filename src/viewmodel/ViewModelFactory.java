@@ -2,14 +2,25 @@ package viewmodel;
 
 import mediator.Model;
 
-public class ViewModelFactory {
+public class ViewModelFactory
+{
 
-    private ThermometersViewModel firstWindowThermometerViewModel;
+  private ThermometersViewModel thermometersViewModel;
+  private SettingsViewModel settingsViewModel;
 
-    public ViewModelFactory(Model model){
-        firstWindowThermometerViewModel = new ThermometersViewModel(model);
-    }
-    public ThermometersViewModel getFirstWindowThermometerViewModel(){
-        return firstWindowThermometerViewModel;
-    }
+  public ViewModelFactory(Model model)
+  {
+    thermometersViewModel = new ThermometersViewModel(model);
+    settingsViewModel = new SettingsViewModel(model);
+  }
+
+  public ThermometersViewModel getThermometersViewModel()
+  {
+    return thermometersViewModel;
+  }
+
+  public SettingsViewModel getSettingsViewModel()
+  {
+    return settingsViewModel;
+  }
 }
