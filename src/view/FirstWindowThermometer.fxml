@@ -30,7 +30,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label prefHeight="17.0" prefWidth="224.0" text="ErrorLabel" textFill="#fc0808">
+            <Label fx:id ="errorLabel" prefHeight="17.0" prefWidth="224.0" text="ErrorLabel" textFill="#fc0808">
                <font>
                   <Font size="24.0" />
                </font>
@@ -72,7 +72,7 @@
       </VBox>
       <VBox alignment="BOTTOM_RIGHT" prefHeight="353.0" prefWidth="149.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="92.0" text="Settings" />
+            <Button onAction="#settingsClicked" mnemonicParsing="false" prefHeight="34.0" prefWidth="92.0" text="Settings" />
          </children>
          <HBox.margin>
             <Insets />
