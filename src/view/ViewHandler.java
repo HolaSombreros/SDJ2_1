@@ -12,6 +12,7 @@ public class ViewHandler {
     private Stage primaryStage;
     private ViewModelFactory viewModelFactory;
     private ThermometersController thermometersController;
+    private SettingsViewController settingsViewController;
 
     public ViewHandler(ViewModelFactory viewModelFactory){
         this.viewModelFactory = viewModelFactory;
@@ -62,6 +63,24 @@ public class ViewHandler {
         }
         else{
             thermometersController.reset();
+        }
+        return thermometersController.getRoot();
+    }
+    public Region loadSettingsView(String fxmlFile){
+        if(settingsViewController == null){
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource(fxmlFile));
+                Region root = loader.load();
+                settingsViewController = loader.getController();
+                settingsViewController.init(this, viewModelFactory.getSettingsViewModel(),root);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        else{
+            settingsViewController.reset();
         }
         return thermometersController.getRoot();
     }
