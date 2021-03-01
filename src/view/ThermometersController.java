@@ -35,7 +35,7 @@ public class ThermometersController
         return root;
     }
     @FXML private void settingsClicked(){
-
+        viewHandler.openView("settings");
     }
     public void reset(){
         //dsjhgsds

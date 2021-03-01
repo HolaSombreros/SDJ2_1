@@ -29,6 +29,11 @@ public class ViewHandler {
         {
             case "thermometers":
                 root = loadThermometersView("FirstWindowThermometer.fxml");
+                break;
+
+            case "settings":
+                root = loadSettingsView("SettingsView.fxml");
+                break;
         }
         currentScene.setRoot(root);
         String title = "";
