@@ -2,10 +2,14 @@ package mediator;
 
 import model.Radiator;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 public class ModelManager implements Model
 {
 
   private Radiator radiator;
+  PropertyChangeSupport property;
 
   public ModelManager()
   {
@@ -47,4 +51,13 @@ public class ModelManager implements Model
     return radiator.getLowTemperature();
   }
 
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
+  }
 }

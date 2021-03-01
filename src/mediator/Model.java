@@ -1,6 +1,8 @@
 package mediator;
 
-public interface Model
+import utility.observer.NamedPropertyChangeSubject;
+
+public interface Model extends NamedPropertyChangeSubject
 {
   void turnUpRadiator();
   void turnDownRadiator();
