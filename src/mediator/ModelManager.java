@@ -9,11 +9,12 @@ public class ModelManager implements Model
 {
 
   private Radiator radiator;
-  PropertyChangeSupport property;
+  private PropertyChangeSupport property;
 
   public ModelManager()
   {
     this.radiator = new Radiator();
+    property = new PropertyChangeSupport(this);
   }
 
   @Override public void turnUpRadiator()
