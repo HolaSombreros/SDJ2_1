@@ -1,10 +1,15 @@
 package view;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.util.converter.NumberStringConverter;
 import viewmodel.SettingsViewModel;
+
 
 
 
@@ -26,10 +31,16 @@ public class SettingsViewController
 
 
     public void init(ViewHandler viewHandler, SettingsViewModel viewModel, Region root){
-            this.viewHandler = viewHandler;
-            this.viewModel = viewModel;
-            this.root = root;
-            //TODO: bind labels and textFields
+        this.viewHandler = viewHandler;
+        this.viewModel = viewModel;
+        this.root = root;
+        Bindings.bindBidirectional(highValueField.textProperty(), viewModel.highValueProperty(), new NumberStringConverter());
+        Bindings.bindBidirectional(lowValueField.textProperty(), viewModel.lowValueProperty(), new NumberStringConverter());
+        errorLabel.textProperty().bind(viewModel.errorProperty());
+        radiatorStateLabel.textProperty().bind(viewModel.radiatorStateProperty());
+        highValueLabel.textProperty().bind(new SimpleStringProperty(viewModel.highValueProperty().toString()));
+        lowValueLabel.textProperty().bind(new SimpleStringProperty(viewModel.lowValueProperty().toString()));
+
     }
 
     public void reset(){
@@ -49,7 +60,7 @@ public class SettingsViewController
     }
 
     @FXML public void cancel(){
-
+        viewHandler.openView("thermometers");
     }
 
     @FXML public void set(){
