@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
-public class FirstWindowThermometerController
+public class ThermometersController
 {
     @FXML private Label thermometer0;
     @FXML private Label thermometer1;
@@ -14,7 +14,7 @@ public class FirstWindowThermometerController
     private Region root;
     private ViewHandler viewHandler;
 
-    public FirstWindowThermometerController(){
+    public ThermometersController(){
 
     }
     public void init(ViewHandler viewHandler, Region root){
