@@ -7,6 +7,7 @@ import viewmodel.ThermometersViewModel;
 
 public class ThermometersController
 {
+    @FXML private Label radiatorStateLabel;
     @FXML private Label thermometer0;
     @FXML private Label thermometer1;
     @FXML private Label thermometer2;
@@ -24,6 +25,7 @@ public class ThermometersController
         this.thermometersViewModel = thermometersViewModel;
         this.root= root;
 
+        radiatorStateLabel.textProperty().bind(thermometersViewModel.getRadiatorState());
         thermometer0.textProperty().bind(thermometersViewModel.thermometer0Property());
         thermometer1.textProperty().bind(thermometersViewModel.thermometer1Property());
         thermometer2.textProperty().bind(thermometersViewModel.thermometer2Property());

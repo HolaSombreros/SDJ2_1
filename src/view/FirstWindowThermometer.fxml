@@ -45,7 +45,7 @@
       </VBox>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="237.0" spacing="30.0">
          <children>
-            <Label alignment="TOP_LEFT" prefHeight="45.0" prefWidth="224.0" text="Heater position">
+            <Label fx:id="radiatorStateLabel" alignment="TOP_LEFT" prefHeight="45.0" prefWidth="224.0" text="Heater position">
                <font>
                   <Font size="24.0" />
                </font>
