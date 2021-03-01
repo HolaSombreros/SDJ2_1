@@ -2,19 +2,44 @@ package utility.external;
 
 public class Thermometer implements Runnable
 {
-  private double temperature;
-  private int distance;
-  private double outdoorTemperature;
-  private int heaterPower;
-  private int seconds;
+  private double t;
+  private double t0;
+  private int p;
+  private int d;
+  private boolean running;
+  private Thread runningThread;
 
-  public Thermometer(int d)
+  public Thermometer(double t, int d, double t0)
   {
+    this.t = t;
+    this.d = d;
+    this.p = 0;
+    this.t0 = t0;
+  }
+
+  @Override public void run()
+  {
+    running = true;
+    runningThread = Thread.currentThread();
+    while (running)
+    {
+      try
+      {
+        int seconds = (int) (Math.random() * 4 + 4);
+        Thread.sleep(seconds * 1000);
+        t = temperature(t, p, d, t0, seconds);
+      }
+      catch (InterruptedException e)
+      {
+        e.printStackTrace();
+      }
+    }
   }
 
   /** Calculating the internal temperature in one of two locations.
    * This includes a term from a heater (depending on location and * heaters power), and a term from an outdoor heat loss.
-   * Values are only valid in the outdoor temperature range [-20; 20]* and when s, the number of seconds between each measurements are* between 4 and 8 seconds.
+   * Values are only valid in the outdoor temperature range [-20; 20]
+   * and when s, the number of seconds between each measurements are* between 4 and 8 seconds.
    * @param t  the last measured temperature
    * @param p  the heaters power {0, 1, 2 or 3}
    *    where 0 is turned off, 1 is low, 2 is medium and 3 is high
@@ -37,29 +62,5 @@ public class Thermometer implements Runnable
     double outdoorTerm = (t - t0) * s / 250.0;
     t = Math.min(Math.max(t - outdoorTerm + heaterTerm, t0), tMax);
     return t;
-  }
-
-  /**
-   * Calculating the external temperature.
-   * Values are only valid if the temperature is being measured
-   * approximately every 10th second.
-   *
-   * @param t0  the last measured external temperature
-   * @param min a lower limit (may temporally be deceeded)
-   * @param max an upper limit (may temporally be exceeded)
-   * @return an updated external temperature
-   */
-  public double externalTemperature(double t0, double min, double max)
-  {
-    double left = t0 - min;
-    double right = max - t0;
-    int sign = Math.random() * (left + right) > left ? 1 : -1;
-    t0 += sign * Math.random();
-    return t0;
-  }
-
-  @Override public void run()
-  {
-
   }
 }
