@@ -1,6 +1,7 @@
 package viewmodel;
 
 import javafx.beans.property.StringProperty;
+import mediator.Model;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

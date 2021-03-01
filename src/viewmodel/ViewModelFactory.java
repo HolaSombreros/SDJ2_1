@@ -1,5 +1,7 @@
 package viewmodel;
 
+import mediator.Model;
+
 public class ViewModelFactory {
 
     private ThermometersViewModel firstWindowThermometerViewModel;
