@@ -7,7 +7,6 @@ public class Thermometer implements Runnable
   private int p;
   private int d;
   private boolean running;
-  private Thread runningThread;
 
   public Thermometer(double t, int d, double t0)
   {
@@ -20,7 +19,6 @@ public class Thermometer implements Runnable
   @Override public void run()
   {
     running = true;
-    runningThread = Thread.currentThread();
     while (running)
     {
       try
