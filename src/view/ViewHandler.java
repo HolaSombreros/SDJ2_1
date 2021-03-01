@@ -54,7 +54,7 @@ public class ViewHandler {
                 loader.setLocation(getClass().getResource(fxmlFile));
                 Region root = loader.load();
                 thermometersController = loader.getController();
-                thermometersController.init(this, viewModelFactory.getFirstWindowThermometerViewModel(),root);
+                thermometersController.init(this, viewModelFactory.getThermometersViewModel(),root);
             }
             catch(Exception e){
                 e.printStackTrace();
