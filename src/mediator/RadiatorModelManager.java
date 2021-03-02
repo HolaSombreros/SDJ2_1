@@ -52,9 +52,9 @@ public class RadiatorModelManager implements Model
   }
 
   @Override
-  public void addInternalTemperature(double t) {
+  public void addInternalTemperature(String id, double t) {
       internalTemp = t;
-      property.firePropertyChange("internalTemperature", null, internalTemp);
+      property.firePropertyChange("internalTemperature", id, internalTemp);
   }
 
   @Override

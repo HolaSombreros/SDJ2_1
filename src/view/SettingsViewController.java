@@ -10,8 +10,7 @@ import javafx.scene.layout.Region;
 import javafx.util.converter.NumberStringConverter;
 import viewmodel.SettingsViewModel;
 
-import java.text.ChoiceFormat;
-import java.text.CompactNumberFormat;
+
 
 
 public class SettingsViewController

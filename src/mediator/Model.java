@@ -9,8 +9,8 @@ public interface Model extends NamedPropertyChangeSubject
   String getRadiatorStatus();
   int getHeatState();
   void setCriticalValues(double highValues, double lowValues);
-  void updateOutsideTemperature(double t);
-  void addInternalTemperature(double t);
+  void updateOutsideTemperature( double t);
+  void addInternalTemperature(String id,double t);
   double getOutsideTemperature();
 
 

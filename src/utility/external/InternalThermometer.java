@@ -12,9 +12,10 @@ public class InternalThermometer implements Runnable
     private Model model;
 
 
-    public InternalThermometer(Model model, double t, int d, double t0)
+    public InternalThermometer(Model model,String id, double t, int d, double t0)
     {
         this.model = model;
+        this.id = id;
         this.t = t;
         this.d = d;
         this.p = 0;
@@ -31,8 +32,8 @@ public class InternalThermometer implements Runnable
                 int seconds = (int) (Math.random() * 4 + 4);
                 Thread.sleep(seconds * 1000);
                 t0 = model.getOutsideTemperature();
-                t = temperature(t, p, d, t0, seconds);
-                model.addInternalTemperature(t);
+                t = Math.round(temperature(t, 2, d, t0, seconds)*100)/100;
+                model.addInternalTemperature(id, t);
             } catch (InterruptedException e)
             {
                 e.printStackTrace();

@@ -17,8 +17,8 @@ public class MyApplication extends Application
     view.start(primaryStage);
 
     ExternalThermometer t0 = new ExternalThermometer(model);
-    InternalThermometer t1 = new InternalThermometer(model,0, 1,model.getOutsideTemperature());
-    InternalThermometer t2 = new InternalThermometer(model, 0, 7, model.getOutsideTemperature());
+    InternalThermometer t1 = new InternalThermometer(model,"t1",0, 1,model.getOutsideTemperature());
+    InternalThermometer t2 = new InternalThermometer(model, "t2" ,0, 7, model.getOutsideTemperature());
 
     Thread thread0 = new Thread(t0);
     Thread thread1  = new Thread(t1);
