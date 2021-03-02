@@ -27,13 +27,14 @@ public class RadiatorModelManager implements Model
   @Override public void turnUp()
   {
     radiator.turnUp();
+    property.firePropertyChange("TurnUp", null, getRadiatorStatus());
   }
 
   @Override public void turnDown()
   {
     radiator.turnDown();
+    property.firePropertyChange("TurnDown",null,getRadiatorStatus());
   }
-
 
   @Override public String getRadiatorStatus()
   {
