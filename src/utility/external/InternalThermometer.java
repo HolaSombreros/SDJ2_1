@@ -32,7 +32,8 @@ public class InternalThermometer implements Runnable
                 int seconds = (int) (Math.random() * 4 + 4);
                 Thread.sleep(seconds * 1000);
                 t0 = model.getOutsideTemperature();
-                t = (Math.round(temperature(t, 0, d, t0, seconds)*100.0))/100.0;
+                p = model.getHeatState();
+                t = (Math.round(temperature(t, p, d, t0, seconds)*100.0))/100.0;
                 model.addInternalTemperature(id, t);
             } catch (InterruptedException e)
             {
