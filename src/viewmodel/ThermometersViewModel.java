@@ -10,75 +10,77 @@ import java.beans.PropertyChangeListener;
 
 public class ThermometersViewModel implements PropertyChangeListener
 {
-    private StringProperty radiatorState;
-    private StringProperty thermometer0;
-    private StringProperty thermometer1;
-    private StringProperty thermometer2;
-    private StringProperty errorLabel;
+  private StringProperty radiatorState;
+  private StringProperty thermometer0;
+  private StringProperty thermometer1;
+  private StringProperty thermometer2;
+  private StringProperty errorLabel;
 
-    private Model model;
+  private Model model;
 
+  public ThermometersViewModel(Model model)
+  {
+    this.model = model;
+    this.thermometer0 = new SimpleStringProperty();
+    this.thermometer1 = new SimpleStringProperty();
+    this.thermometer2 = new SimpleStringProperty();
+    this.errorLabel = new SimpleStringProperty();
+    this.radiatorState = new SimpleStringProperty();
+    model.addListener(this);
+    radiatorState.set(model.getRadiatorStatus());
+  }
 
-    public ThermometersViewModel(Model model){
-        this.model = model;
-        this.thermometer0 = new SimpleStringProperty();
-        this.thermometer1 = new SimpleStringProperty();
-        this.thermometer2 = new SimpleStringProperty();
-        this.errorLabel = new SimpleStringProperty();
-        this.radiatorState = new SimpleStringProperty();
-        model.addListener(this);
-        radiatorState.set(model.getRadiatorStatus());
-    }
+  public StringProperty getRadiatorState()
+  {
+    return radiatorState;
+  }
 
-    public StringProperty getRadiatorState()
-    {
-        return radiatorState;
-    }
+  public StringProperty thermometer0Property()
+  {
+    return thermometer0;
+  }
 
-    public StringProperty thermometer0Property()
-    {
-        return thermometer0;
-    }
+  public StringProperty thermometer1Property()
+  {
+    return thermometer1;
+  }
 
-    public StringProperty thermometer1Property()
-    {
-        return thermometer1;
-    }
+  public StringProperty thermometer2Property()
+  {
+    return thermometer2;
+  }
 
-    public StringProperty thermometer2Property()
-    {
-        return thermometer2;
-    }
-    public StringProperty errorLabelProperty()
-    {
-        return errorLabel;
-    }
+  public StringProperty errorLabelProperty()
+  {
+    return errorLabel;
+  }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt)
-    {
-        Platform.runLater(()-> {
-           try
-           {
-               if (evt.getPropertyName().equals("internalTemperature"))
-               {
-                   if (evt.getOldValue().equals("t1"))
-                       thermometer1.set(evt.getNewValue() + " ");
-                   else
-                       thermometer2.set(evt.getNewValue() + " ");
-               }
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() -> {
+      try
+      {
+        if (evt.getPropertyName().equals("internalTemperature"))
+        {
+          if (evt.getOldValue().equals("t1"))
+            thermometer1.set(evt.getNewValue() + " ");
+          else
+            thermometer2.set(evt.getNewValue() + " ");
+        }
 
-               if (evt.getPropertyName().equals("outsideTemperature"))
-               {
-                   thermometer0.set((evt.getNewValue() + " "));
-               }
-               if(evt.getPropertyName().equals("Radiator")){
-                   radiatorState.set(evt.getNewValue() + " ");
-               }
-           }
-           catch (Exception e){
-               errorLabel.set(e.getMessage());
-           }
-        });
-    }
+        if (evt.getPropertyName().equals("outsideTemperature"))
+        {
+          thermometer0.set((evt.getNewValue() + " "));
+        }
+        if (evt.getPropertyName().equals("Radiator"))
+        {
+          radiatorState.set(evt.getNewValue() + " ");
+        }
+      }
+      catch (Exception e)
+      {
+        errorLabel.set(e.getMessage());
+      }
+    });
+  }
 }

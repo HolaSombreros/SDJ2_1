@@ -42,7 +42,7 @@ public class Radiator
         return 0;
       case "Low":
         return 1;
-      case"Medium":
+      case "Medium":
         return 2;
       case "High":
         return 3;
