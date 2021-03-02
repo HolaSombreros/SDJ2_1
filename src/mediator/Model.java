@@ -4,14 +4,11 @@ import utility.observer.NamedPropertyChangeSubject;
 
 public interface Model extends NamedPropertyChangeSubject
 {
-  void turnUpRadiator();
-  void turnDownRadiator();
+  void turnUp();
+  void turnDown();
   String getRadiatorStatus();
-  void setHighTemperature(double highTemperature);
-  double getHighTemperature();
-  void setLowTemperature(double lowTemperature);
-  double getLowTemperature();
   String getHeatStateStatus();
   int getHeatState();
+  void setCriticalValues(double highValues, double lowValues);
 
 }

@@ -40,7 +40,6 @@ public class SettingsViewController
         radiatorStateLabel.textProperty().bind(viewModel.radiatorStateProperty());
         highValueLabel.textProperty().bind(new SimpleStringProperty(viewModel.highValueProperty().toString()));
         lowValueLabel.textProperty().bind(new SimpleStringProperty(viewModel.lowValueProperty().toString()));
-
     }
 
     public void reset(){
