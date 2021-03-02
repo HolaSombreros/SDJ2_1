@@ -1,6 +1,7 @@
 package viewmodel;
 
 
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -53,6 +54,14 @@ public class SettingsViewModel implements PropertyChangeListener {
        //TODO
     }
 
+    public void turnUp(){
+        model.turnUp();
+    }
+
+    public void turnDown(){
+        model.turnDown();
+    }
+
     public StringProperty highValueLabelProperty() {
         return highValueLabelProperty;
     }
@@ -81,10 +90,25 @@ public class SettingsViewModel implements PropertyChangeListener {
     }
 
     public void propertyChange(PropertyChangeEvent evt){
-        if(evt.getPropertyName().equals("CriticalValues")){
-            highValueLabelProperty.set(evt.getNewValue().toString());
-            lowValueLabelProperty.set(evt.getOldValue().toString());
-        }
+        Platform.runLater(() -> {
+            switch(evt.getPropertyName()) {
+                case "CriticalValues": {
+                    highValueLabelProperty.set(evt.getNewValue().toString());
+                    lowValueLabelProperty.set(evt.getOldValue().toString());
+                    break;
+                }
+                case "TurnUp":
+                    radiatorStateProperty.set("Current state: " + evt.getNewValue());
+                    break;
+
+                case "TurnDown":
+                    radiatorStateProperty.set("Current state: " + evt.getNewValue());
+                    break;
+            }
+        });
+
+
+
 
     }
 }

@@ -2,12 +2,10 @@ package view;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import javafx.util.converter.NumberStringConverter;
 import viewmodel.DoubleStringConverter;
 import viewmodel.SettingsViewModel;
 
@@ -53,11 +51,11 @@ public class SettingsViewController
     }
 
     @FXML public void turnUp(){
-
+        viewModel.turnUp();
     }
 
     @FXML public void turnDown(){
-
+        viewModel.turnDown();
     }
 
     @FXML public void cancel(){
