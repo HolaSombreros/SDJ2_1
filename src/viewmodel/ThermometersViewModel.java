@@ -59,10 +59,10 @@ public class ThermometersViewModel implements PropertyChangeListener
     {
         Platform.runLater(()-> {
             if(evt.getPropertyName().equals("internalTemperature")){
-                thermometer1.set((String)evt.getNewValue());
+                thermometer1.set(evt.getNewValue() + " ");
             }
             if(evt.getPropertyName().equals("outsideTemperature")){
-                thermometer0.set((String)evt.getNewValue());
+                thermometer0.set((evt.getNewValue() + " "));
             }
         });
     }
