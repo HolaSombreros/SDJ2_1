@@ -10,6 +10,6 @@ public class OffState extends HeatState
 
   @Override public String getState()
   {
-    return "OFF";
+    return "Off";
   }
 }

@@ -3,8 +3,6 @@ package model;
 public class Radiator
 {
   private HeatState heatState;
-  private double highTemperature;
-  private double lowTemperature;
 
   public Radiator()
   {
@@ -36,23 +34,20 @@ public class Radiator
     return heatState.getState();
   }
 
-  public void setHighTemperature(double highTemperature)
+  public int getPower()
   {
-    this.highTemperature = highTemperature;
-  }
-
-  public double getHighTemperature()
-  {
-    return highTemperature;
-  }
-
-  public void setLowTemperature(double lowTemperature)
-  {
-    this.lowTemperature = lowTemperature;
-  }
-
-  public double getLowTemperature()
-  {
-    return lowTemperature;
+    switch (getStatus())
+    {
+      case "Off":
+        return 0;
+      case "Low":
+        return 1;
+      case"Medium":
+        return 2;
+      case "High":
+        return 3;
+      default:
+        return -1;
+    }
   }
 }
