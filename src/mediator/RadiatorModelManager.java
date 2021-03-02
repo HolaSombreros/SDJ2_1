@@ -27,6 +27,7 @@ public class RadiatorModelManager implements Model
   @Override public void turnUp()
   {
     radiator.turnUp();
+    timeOut();
     property.firePropertyChange("TurnUp", null, getRadiatorStatus());
   }
 
@@ -34,6 +35,12 @@ public class RadiatorModelManager implements Model
   {
     radiator.turnDown();
     property.firePropertyChange("TurnDown",null,getRadiatorStatus());
+  }
+
+  private void timeOut()
+  {
+    if(getHeatState()==3)
+      radiator.timeout();
   }
 
   @Override public String getRadiatorStatus()
