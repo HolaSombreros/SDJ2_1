@@ -51,11 +51,13 @@ public class RadiatorModelManager implements Model
   @Override
   public void updateOutsideTemperature(double t) {
         outsideTemp = t;
+        property.firePropertyChange("outsideTemperature", null, outsideTemp);
   }
 
   @Override
   public void addInternalTemperature(double t) {
       internalTemp = t;
+      property.firePropertyChange("internalTemperature", null, internalTemp);
   }
 
   @Override

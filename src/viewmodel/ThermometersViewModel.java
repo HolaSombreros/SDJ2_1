@@ -1,5 +1,6 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import mediator.Model;
@@ -56,6 +57,13 @@ public class ThermometersViewModel implements PropertyChangeListener
     @Override
     public void propertyChange(PropertyChangeEvent evt)
     {
-
+        Platform.runLater(()-> {
+            if(evt.getPropertyName().equals("internalTemperature")){
+                thermometer1.set((String)evt.getNewValue());
+            }
+            if(evt.getPropertyName().equals("outsideTemperature")){
+                thermometer0.set((String)evt.getNewValue());
+            }
+        });
     }
 }
