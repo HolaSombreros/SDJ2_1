@@ -17,7 +17,7 @@ public class ExternalThermometer implements Runnable
         double right = max - lastTemperature;
         int sign = Math.random() * (left + right) > left ? 1 : -1;
         lastTemperature += sign * Math.random();
-        return lastTemperature;
+        return Math.round(lastTemperature*100.0)/100.0;
     }
 
 
@@ -28,6 +28,7 @@ public class ExternalThermometer implements Runnable
         while(true){
             try{
                 Thread.sleep(10000);
+
                 model.updateOutsideTemperature(externalTemperature(lastTemperature, -20, 20));
             }
             catch(InterruptedException e){
