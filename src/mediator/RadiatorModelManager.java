@@ -5,13 +5,14 @@ import model.Radiator;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class ModelManager implements Model
+public class RadiatorModelManager implements Model
 {
 
   private Radiator radiator;
   private PropertyChangeSupport property;
+  private Temperature temperature;
 
-  public ModelManager()
+  public RadiatorModelManager()
   {
     this.radiator = new Radiator();
     property = new PropertyChangeSupport(this);
@@ -52,6 +53,13 @@ public class ModelManager implements Model
     return radiator.getLowTemperature();
   }
 
+  @Override public String getHeatStateStatus(){
+    return  radiator.getStatus();
+  }
+
+  @Override public int getHeatState(){
+      return 0;
+  }
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);
@@ -60,5 +68,9 @@ public class ModelManager implements Model
   @Override public void removeListener(PropertyChangeListener listener)
   {
     property.removePropertyChangeListener(listener);
+  }
+
+  public void setCriticalValues(double highValue, double lowValue){
+    temperature.setValues(highValue,lowValue);
   }
 }

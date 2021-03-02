@@ -9,7 +9,7 @@ public class MyApplication extends Application
 
   public void start(Stage primaryStage)
   {
-    Model model = new ModelManager();
+    Model model = new RadiatorModelManager();
     ViewModelFactory viewModelFactory = new ViewModelFactory(model);
     ViewHandler view = new ViewHandler(viewModelFactory);
     view.start(primaryStage);
