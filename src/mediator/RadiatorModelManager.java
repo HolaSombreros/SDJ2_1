@@ -12,13 +12,15 @@ public class RadiatorModelManager implements Model
 
   private Radiator radiator;
   private PropertyChangeSupport property;
-  private Temperature temperature;
+  private Temperature criticalValues;
+  private double outsideTemp;
+
 
   public RadiatorModelManager()
   {
     this.radiator = new Radiator();
     property = new PropertyChangeSupport(this);
-    temperature = new Temperature(30,15);
+    criticalValues = new Temperature(30,15);
   }
 
   @Override public void turnUp()
@@ -45,9 +47,23 @@ public class RadiatorModelManager implements Model
       return radiator.getPower();
   }
 
+  @Override
+  public void updateOutsideTemperature(double t) {
 
-  public void setCriticalValues(double highValue, double lowValue){
-    temperature.setValues(highValue,lowValue);
+  }
+
+  @Override
+  public void addInternalTemperature(double t) {
+
+  }
+
+  @Override
+  public double getOutsideTemperature() {
+     return  0;
+  }
+
+  @Override public void setCriticalValues(double highValue, double lowValue){
+    criticalValues.setValues(highValue,lowValue);
   }
 
   @Override public void addListener(PropertyChangeListener listener)

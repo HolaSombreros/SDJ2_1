@@ -20,6 +20,8 @@ public class ExternalThermometer implements Runnable
         return lastTemperature;
     }
 
+
+
     @Override
     public void run()
     {

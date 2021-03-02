@@ -10,5 +10,9 @@ public interface Model extends NamedPropertyChangeSubject
   String getHeatStateStatus();
   int getHeatState();
   void setCriticalValues(double highValues, double lowValues);
+  void updateOutsideTemperature(double t);
+  void addInternalTemperature(double t);
+  double getOutsideTemperature();
+
 
 }
