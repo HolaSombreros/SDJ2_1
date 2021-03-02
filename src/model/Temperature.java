@@ -19,6 +19,8 @@ public class Temperature {
     }
 
     public void setValues(double highValue, double lowValue){
+        if (highValue<lowValue)
+            throw new IllegalArgumentException("High temperature can not be lower than the low temperature");
         this.highValue = highValue;
         this.lowValue = lowValue;
     }
