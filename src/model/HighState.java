@@ -2,22 +2,27 @@ package model;
 
 public class HighState extends HeatState
 {
+  private Thread timer;
+
+  @Override public synchronized void timeOut(Radiator radiator)
+  {
+    this.timer = new Thread(() -> {
+      try
+      {
+        Thread.sleep(40 * 1000);
+        radiator.setState(new MediumState());
+      }
+      catch (InterruptedException e)
+      {
+        e.printStackTrace();
+      }
+    });
+    timer.start();
+  }
 
   @Override public void turnDown(Radiator radiator)
   {
-    radiator.setState(new MediumState());
-  }
-
-  @Override public void timeOut(Radiator radiator)
-  {
-    try
-    {
-      Thread.sleep(40000);
-    }
-    catch (InterruptedException e)
-    {
-      e.printStackTrace();
-    }
+    timer.interrupt();
     radiator.setState(new MediumState());
   }
 
@@ -25,4 +30,5 @@ public class HighState extends HeatState
   {
     return "High";
   }
+
 }

@@ -12,7 +12,7 @@ public abstract class HeatState
 
   }
 
-  public void timeOut(Radiator radiator)
+  public synchronized void timeOut(Radiator radiator)
   {
 
   }

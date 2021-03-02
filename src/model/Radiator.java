@@ -19,7 +19,7 @@ public class Radiator
     heatState.turnDown(this);
   }
 
-  public void timeout()
+  public void timeOut()
   {
     heatState.timeOut(this);
   }

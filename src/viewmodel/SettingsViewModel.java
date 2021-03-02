@@ -100,6 +100,7 @@ public class SettingsViewModel implements PropertyChangeListener {
                 case "Radiator":
                     radiatorStateProperty.set("Current state: " + evt.getNewValue());
                     break;
+
             }
         });
 
