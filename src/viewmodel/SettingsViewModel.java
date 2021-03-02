@@ -97,11 +97,7 @@ public class SettingsViewModel implements PropertyChangeListener {
                     lowValueLabelProperty.set(evt.getOldValue().toString());
                     break;
                 }
-                case "TurnUp":
-                    radiatorStateProperty.set("Current state: " + evt.getNewValue());
-                    break;
-
-                case "TurnDown":
+                case "Radiator":
                     radiatorStateProperty.set("Current state: " + evt.getNewValue());
                     break;
             }
