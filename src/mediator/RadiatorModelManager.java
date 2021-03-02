@@ -40,7 +40,7 @@ public class RadiatorModelManager implements Model
   {
     if (getHeatState() == 3)
     {
-      radiator.timeout();
+      radiator.timeOut();
       property.firePropertyChange("Radiator", null, getRadiatorStatus());
     }
   }
