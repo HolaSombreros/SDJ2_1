@@ -1,5 +1,7 @@
 package utility.external;
 
+import mediator.Model;
+
 public class InternalThermometer implements Runnable
 {
     private double t;
@@ -7,9 +9,12 @@ public class InternalThermometer implements Runnable
     private int p;
     private int d;
     private String id;
+    private Model model;
 
-    public InternalThermometer(double t, int d, double t0)
+
+    public InternalThermometer(Model model, double t, int d, double t0)
     {
+        this.model = model;
         this.t = t;
         this.d = d;
         this.p = 0;
@@ -25,7 +30,9 @@ public class InternalThermometer implements Runnable
             {
                 int seconds = (int) (Math.random() * 4 + 4);
                 Thread.sleep(seconds * 1000);
+                t0 = model.getOutsideTemperature();
                 t = temperature(t, p, d, t0, seconds);
+                model.addInternalTemperature(t);
             } catch (InterruptedException e)
             {
                 e.printStackTrace();
@@ -60,10 +67,4 @@ public class InternalThermometer implements Runnable
         t = Math.min(Math.max(t - outdoorTerm + heaterTerm, t0), tMax);
         return t;
     }
-
-    /*** Calculating the external temperature.* Values are only valid if the temperature is being measured *
-     *  approximately every 10th second.** @param t0  the last measured external temperature
-     *  @param min a lower limit (may temporally be deceeded)
-     *  @param max an upper limit (may temporally be exceeded)
-     *  @return an updated external temperature*/
 }
