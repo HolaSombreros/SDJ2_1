@@ -23,7 +23,7 @@ public class SettingsViewModel {
     public SettingsViewModel(Model model) {
         this.model = model;
         highValueProperty = new SimpleIntegerProperty();
-        highValueProperty = new SimpleIntegerProperty();
+        lowValueProperty = new SimpleIntegerProperty();
         radiatorStateProperty = new SimpleStringProperty();
         errorProperty = new SimpleStringProperty();
     }

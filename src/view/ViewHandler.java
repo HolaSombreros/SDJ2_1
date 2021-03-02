@@ -53,7 +53,7 @@ public class ViewHandler {
         primaryStage.close();
     }
 
-    public Region loadThermometersView(String fxmlFile){
+    private Region loadThermometersView(String fxmlFile){
         if(thermometersController == null){
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -71,7 +71,7 @@ public class ViewHandler {
         }
         return thermometersController.getRoot();
     }
-    public Region loadSettingsView(String fxmlFile){
+    private Region loadSettingsView(String fxmlFile){
         if(settingsViewController == null){
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -87,7 +87,7 @@ public class ViewHandler {
         else{
             settingsViewController.reset();
         }
-        return thermometersController.getRoot();
+        return settingsViewController.getRoot();
     }
 
 }
