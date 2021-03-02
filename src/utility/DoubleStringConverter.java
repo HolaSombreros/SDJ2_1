@@ -20,7 +20,7 @@ public class DoubleStringConverter extends StringConverter<Number>
     }
     catch (Exception e)
     {
-      throw new IllegalArgumentException("Temperature can not be 0");
+      throw new IllegalArgumentException("Enter both temperatures values");
     }
   }
 }
