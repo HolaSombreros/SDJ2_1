@@ -16,31 +16,33 @@ public class RadiatorModelManager implements Model
   private double outsideTemp;
   private double internalTemp;
 
-
   public RadiatorModelManager()
   {
     this.radiator = new Radiator();
     property = new PropertyChangeSupport(this);
-    criticalValues = new Temperature(30,15);
+    criticalValues = new Temperature(30, 15);
   }
 
   @Override public void turnUp()
   {
     radiator.turnUp();
     timeOut();
-    property.firePropertyChange("TurnUp", null, getRadiatorStatus());
+    property.firePropertyChange("Radiator", null, getRadiatorStatus());
   }
 
   @Override public void turnDown()
   {
     radiator.turnDown();
-    property.firePropertyChange("TurnDown",null,getRadiatorStatus());
+    property.firePropertyChange("Radiator", null, getRadiatorStatus());
   }
 
   private void timeOut()
   {
-    if(getHeatState()==3)
+    if (getHeatState() == 3)
+    {
       radiator.timeout();
+      property.firePropertyChange("Radiator", null,getRadiatorStatus());
+    }
   }
 
   @Override public String getRadiatorStatus()
@@ -48,31 +50,32 @@ public class RadiatorModelManager implements Model
     return radiator.getStatus();
   }
 
-
-  @Override public int getHeatState(){
-      return radiator.getPower();
+  @Override public int getHeatState()
+  {
+    return radiator.getPower();
   }
 
-  @Override
-  public void updateOutsideTemperature(double t) {
-        outsideTemp = t;
-        property.firePropertyChange("outsideTemperature", null, outsideTemp);
+  @Override public void updateOutsideTemperature(double t)
+  {
+    outsideTemp = t;
+    property.firePropertyChange("outsideTemperature", null, outsideTemp);
   }
 
-  @Override
-  public void addInternalTemperature(String id, double t) {
-      internalTemp = t;
-      property.firePropertyChange("internalTemperature", id, internalTemp);
+  @Override public void addInternalTemperature(String id, double t)
+  {
+    internalTemp = t;
+    property.firePropertyChange("internalTemperature", id, internalTemp);
   }
 
-  @Override
-  public double getOutsideTemperature() {
-      return outsideTemp;
+  @Override public double getOutsideTemperature()
+  {
+    return outsideTemp;
   }
 
-  @Override public void setCriticalValues(double highValue, double lowValue){
-    criticalValues.setValues(highValue,lowValue);
-    property.firePropertyChange("CriticalValues",highValue,lowValue);
+  @Override public void setCriticalValues(double highValue, double lowValue)
+  {
+    criticalValues.setValues(highValue, lowValue);
+    property.firePropertyChange("CriticalValues", highValue, lowValue);
   }
 
   @Override public void addListener(PropertyChangeListener listener)
@@ -84,6 +87,5 @@ public class RadiatorModelManager implements Model
   {
     property.removePropertyChangeListener(listener);
   }
-
 
 }

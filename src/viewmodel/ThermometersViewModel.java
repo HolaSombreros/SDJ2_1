@@ -72,10 +72,7 @@ public class ThermometersViewModel implements PropertyChangeListener
                {
                    thermometer0.set((evt.getNewValue() + " "));
                }
-               if(evt.getPropertyName().equals("TurnUp")){
-                   radiatorState.set(evt.getNewValue() + " ");
-               }
-               if(evt.getPropertyName().equals("TurnDown")){
+               if(evt.getPropertyName().equals("Radiator")){
                    radiatorState.set(evt.getNewValue() + " ");
                }
            }
