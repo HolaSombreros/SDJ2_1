@@ -16,7 +16,7 @@ public class DoubleStringConverter extends StringConverter<Number>
   {
     try
     {
-      return Integer.parseInt(s);
+      return Double.parseDouble(s);
     }
     catch (Exception e)
     {
