@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.util.converter.NumberStringConverter;
+import viewmodel.DoubleStringConverter;
 import viewmodel.SettingsViewModel;
 
 
@@ -34,8 +35,8 @@ public class SettingsViewController
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
-        Bindings.bindBidirectional(highValueField.textProperty(), viewModel.highValueProperty(), new NumberStringConverter());
-        Bindings.bindBidirectional(lowValueField.textProperty(), viewModel.lowValueProperty(), new NumberStringConverter());
+        Bindings.bindBidirectional(highValueField.textProperty(), viewModel.highValueProperty(), new DoubleStringConverter());
+        Bindings.bindBidirectional(lowValueField.textProperty(), viewModel.lowValueProperty(), new DoubleStringConverter());
         errorLabel.textProperty().bind(viewModel.errorProperty());
         radiatorStateLabel.textProperty().bind(viewModel.radiatorStateProperty());
         highValueLabel.textProperty().bind(new SimpleStringProperty(viewModel.highValueLabelProperty().toString()));
@@ -64,7 +65,7 @@ public class SettingsViewController
     }
 
     @FXML public void set(){
-
+        viewModel.set();
     }
 
 

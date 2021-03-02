@@ -64,6 +64,7 @@ public class RadiatorModelManager implements Model
 
   @Override public void setCriticalValues(double highValue, double lowValue){
     criticalValues.setValues(highValue,lowValue);
+    property.firePropertyChange("CriticalValues",highValue,lowValue);
   }
 
   @Override public void addListener(PropertyChangeListener listener)
