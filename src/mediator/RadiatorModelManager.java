@@ -40,9 +40,6 @@ public class RadiatorModelManager implements Model
     return radiator.getStatus();
   }
 
-  @Override public String getHeatStateStatus(){
-    return  radiator.getStatus();
-  }
 
   @Override public int getHeatState(){
       return radiator.getPower();

@@ -10,7 +10,8 @@ import javafx.scene.layout.Region;
 import javafx.util.converter.NumberStringConverter;
 import viewmodel.SettingsViewModel;
 
-
+import java.text.ChoiceFormat;
+import java.text.CompactNumberFormat;
 
 
 public class SettingsViewController
@@ -38,12 +39,13 @@ public class SettingsViewController
         Bindings.bindBidirectional(lowValueField.textProperty(), viewModel.lowValueProperty(), new NumberStringConverter());
         errorLabel.textProperty().bind(viewModel.errorProperty());
         radiatorStateLabel.textProperty().bind(viewModel.radiatorStateProperty());
-        highValueLabel.textProperty().bind(new SimpleStringProperty(viewModel.highValueProperty().toString()));
-        lowValueLabel.textProperty().bind(new SimpleStringProperty(viewModel.lowValueProperty().toString()));
+        highValueLabel.textProperty().bind(new SimpleStringProperty(viewModel.highValueLabelProperty().toString()));
+        lowValueLabel.textProperty().bind(new SimpleStringProperty(viewModel.lowValueLabelProperty().toString()));
+        reset();
     }
 
     public void reset(){
-
+        viewModel.clear();
     }
 
     public Region getRoot() {

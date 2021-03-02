@@ -1,19 +1,19 @@
 package viewmodel;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import com.sun.javafx.collections.ImmutableObservableList;
+import javafx.beans.property.*;
 import mediator.Model;
 
 public class SettingsViewModel {
 
     //private attributes
 
-    private IntegerProperty highValueProperty;
-    private IntegerProperty lowValueProperty;
+    private DoubleProperty highValueProperty;
+    private DoubleProperty lowValueProperty;
     private StringProperty radiatorStateProperty;
     private StringProperty errorProperty;
+    private StringProperty highValueLabelProperty;
+    private StringProperty lowValueLabelProperty;
     private Model model;
 
 
@@ -22,18 +22,38 @@ public class SettingsViewModel {
      * */
     public SettingsViewModel(Model model) {
         this.model = model;
-        highValueProperty = new SimpleIntegerProperty();
-        lowValueProperty = new SimpleIntegerProperty();
+        highValueProperty = new SimpleDoubleProperty();
+        lowValueProperty = new SimpleDoubleProperty();
         radiatorStateProperty = new SimpleStringProperty();
-        errorProperty = new SimpleStringProperty();
+        errorProperty = new SimpleStringProperty(null);
+        highValueLabelProperty = new SimpleStringProperty();
+        lowValueLabelProperty = new SimpleStringProperty();
+
+    }
+
+    public void clear(){
+        errorProperty.set("");
+        highValueProperty.set(0);
+        lowValueProperty.set(0);
+
+        radiatorStateProperty.set("Current state " + model.getRadiatorStatus());
     }
 
 
-    public IntegerProperty highValueProperty() {
+    public StringProperty highValueLabelProperty() {
+        return highValueLabelProperty;
+    }
+
+
+    public StringProperty lowValueLabelProperty() {
+        return lowValueLabelProperty;
+    }
+
+    public DoubleProperty highValueProperty() {
         return highValueProperty;
     }
 
-    public IntegerProperty lowValueProperty() {
+    public DoubleProperty lowValueProperty() {
         return lowValueProperty;
     }
 
