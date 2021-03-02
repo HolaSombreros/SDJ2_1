@@ -1,13 +1,14 @@
 package utility.external;
 
-public class Thermometer implements Runnable
+public class InternalThermometer implements Runnable
 {
     private double t;
     private double t0;
     private int p;
     private int d;
+    private String id;
 
-    public Thermometer(double t, int d, double t0)
+    public InternalThermometer(double t, int d, double t0)
     {
         this.t = t;
         this.d = d;
@@ -65,12 +66,4 @@ public class Thermometer implements Runnable
      *  @param min a lower limit (may temporally be deceeded)
      *  @param max an upper limit (may temporally be exceeded)
      *  @return an updated external temperature*/
-    public double externalTemperature(double t0, double min, double max)
-    {
-        double left = t0 - min;
-        double right = max - t0;
-        int sign = Math.random() * (left + right) > left ? 1 : -1;
-        t0 += sign * Math.random();
-        return t0;
-    }
 }
