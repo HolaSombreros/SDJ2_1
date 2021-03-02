@@ -14,6 +14,7 @@ public class RadiatorModelManager implements Model
   private PropertyChangeSupport property;
   private Temperature criticalValues;
   private double outsideTemp;
+  private double internalTemp;
 
 
   public RadiatorModelManager()
@@ -49,17 +50,17 @@ public class RadiatorModelManager implements Model
 
   @Override
   public void updateOutsideTemperature(double t) {
-
+        outsideTemp = t;
   }
 
   @Override
   public void addInternalTemperature(double t) {
-
+      internalTemp = t;
   }
 
   @Override
   public double getOutsideTemperature() {
-     return  0;
+      return outsideTemp;
   }
 
   @Override public void setCriticalValues(double highValue, double lowValue){
