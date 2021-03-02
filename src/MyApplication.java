@@ -24,6 +24,10 @@ public class MyApplication extends Application
     Thread thread1  = new Thread(t1);
     Thread thread2 = new Thread(t2);
 
+    thread0.setDaemon(true);
+    thread1.setDaemon(true);
+    thread2.setDaemon(true);
+
     thread0.start();
     thread1.start();
     thread2.start();
