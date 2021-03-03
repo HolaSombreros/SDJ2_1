@@ -37,8 +37,8 @@ public class SettingsViewController
         Bindings.bindBidirectional(lowValueField.textProperty(), viewModel.lowValueProperty(), new DoubleStringConverter());
         errorLabel.textProperty().bind(viewModel.errorProperty());
         radiatorStateLabel.textProperty().bind(viewModel.radiatorStateProperty());
-        highValueLabel.textProperty().bind(new SimpleStringProperty(viewModel.highValueLabelProperty().toString()));
-        lowValueLabel.textProperty().bind(new SimpleStringProperty(viewModel.lowValueLabelProperty().toString()));
+        highValueLabel.textProperty().bind(viewModel.highValueLabelProperty());
+        lowValueLabel.textProperty().bind(viewModel.lowValueLabelProperty());
         reset();
     }
 

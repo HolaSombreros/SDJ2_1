@@ -41,12 +41,14 @@ public class SettingsViewModel implements PropertyChangeListener {
     public void clear(){
         errorProperty.set("");
         radiatorStateProperty.set("Current state " + model.getRadiatorStatus());
-
+        highValueProperty.set(0.0);
+        lowValueProperty.set(0.0);
     }
 
     public void set(){
        try {
            model.setCriticalValues(highValueProperty.doubleValue(), lowValueProperty.doubleValue());
+           clear();
        }
        catch (Exception e){
            errorProperty.set(e.getMessage());
@@ -93,8 +95,8 @@ public class SettingsViewModel implements PropertyChangeListener {
         Platform.runLater(() -> {
             switch(evt.getPropertyName()) {
                 case "CriticalValues": {
-                    highValueLabelProperty.set(evt.getNewValue().toString());
-                    lowValueLabelProperty.set(evt.getOldValue().toString());
+                    highValueLabelProperty.set(evt.getOldValue().toString());
+                    lowValueLabelProperty.set(evt.getNewValue().toString());
                     break;
                 }
                 case "Radiator":
