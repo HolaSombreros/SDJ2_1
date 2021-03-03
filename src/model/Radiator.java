@@ -1,5 +1,7 @@
 package model;
 
+import mediator.Model;
+
 public class Radiator
 {
   private HeatState heatState;
@@ -19,9 +21,9 @@ public class Radiator
     heatState.turnDown(this);
   }
 
-  public void timeOut()
+  public void startTimer(Model model)
   {
-    heatState.timeOut(this);
+    heatState.startTimer(this, model);
   }
 
   public void setState(HeatState heatState)

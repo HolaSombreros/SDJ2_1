@@ -6,11 +6,15 @@ public class ExternalThermometer implements Runnable
 {
   private double lastTemperature;
   private Model model;
+  private static final int MIN = -8;
+  private static final int MAX = 20;
+  private static final int STARTING_TEMPERATURE = 5;
+  private static final int SLEEP_TIME = 10000;
 
   public ExternalThermometer(Model model)
   {
     this.model = model;
-    lastTemperature = 0;
+    lastTemperature = STARTING_TEMPERATURE;
   }
 
   public double externalTemperature(double lastTemperature, double min, double max)
@@ -19,7 +23,8 @@ public class ExternalThermometer implements Runnable
     double right = max - lastTemperature;
     int sign = Math.random() * (left + right) > left ? 1 : -1;
     lastTemperature += sign * Math.random();
-    return Math.round(lastTemperature * 100.0) / 100.0;
+    this.lastTemperature = lastTemperature;
+    return lastTemperature;
   }
 
   @Override public void run()
@@ -28,9 +33,8 @@ public class ExternalThermometer implements Runnable
     {
       try
       {
-        Thread.sleep(10000);
-
-        model.updateOutsideTemperature(externalTemperature(lastTemperature, -20, 20));
+        Thread.sleep(SLEEP_TIME);
+        model.updateOutsideTemperature(Math.round(externalTemperature(lastTemperature, MIN, MAX) * 100.0) / 100.0);
       }
       catch (InterruptedException e)
       {

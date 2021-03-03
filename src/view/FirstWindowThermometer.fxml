@@ -7,32 +7,31 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ThermometersController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ThermometersController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="226.0" spacing="30.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="221.0" text="Thermometer 0:" textFill="#171717">
+            <Label prefHeight="17.0" prefWidth="221.0" text="Outside Temperature:" textFill="#171717">
                <VBox.margin>
                   <Insets top="75.0" />
                </VBox.margin>
                <font>
-                  <Font size="24.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label prefHeight="17.0" prefWidth="245.0" text="Thermometer 1:" textFill="#1b1a1a">
+            <Label prefHeight="17.0" prefWidth="245.0" text="Inside Temperature #1:" textFill="#1b1a1a">
                <font>
-                  <Font size="24.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label prefHeight="17.0" prefWidth="232.0" text="Thermometer 2:" textFill="#0a0a0a">
+            <Label prefHeight="17.0" prefWidth="232.0" text="Inside Temperature #2:" textFill="#0a0a0a">
                <font>
-                  <Font size="24.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id ="errorLabel" prefHeight="17.0" prefWidth="224.0" text="ErrorLabel" textFill="#fc0808">
+            <Label fx:id="warningLabel" prefHeight="17.0" prefWidth="224.0" text="Warning" textFill="#fc0808">
                <font>
-                  <Font size="24.0" />
+                  <Font size="18.0" />
                </font>
                <VBox.margin>
                   <Insets top="40.0" />
@@ -43,7 +42,7 @@
             <Insets left="20.0" />
          </HBox.margin>
       </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="237.0" spacing="30.0">
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="237.0">
          <children>
             <Label fx:id="radiatorStateLabel" alignment="TOP_LEFT" prefHeight="45.0" prefWidth="224.0" text="Heater position">
                <font>
@@ -52,27 +51,34 @@
             </Label>
             <Label fx:id="thermometer0" prefHeight="35.0" prefWidth="230.0" text="Label" textFill="#171717">
                <VBox.margin>
-                  <Insets />
+                  <Insets top="26.0" />
                </VBox.margin>
                <font>
-                  <Font size="24.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
             <Label fx:id="thermometer1" prefHeight="35.0" prefWidth="239.0" text="Label" textFill="#171717">
                <font>
-                  <Font size="24.0" />
+                  <Font size="18.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </Label>
             <Label fx:id="thermometer2" prefHeight="35.0" prefWidth="226.0" text="Label">
                <font>
-                  <Font size="24.0" />
+                  <Font size="18.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="22.0" />
+               </VBox.margin>
             </Label>
          </children>
       </VBox>
-      <VBox alignment="BOTTOM_RIGHT" prefHeight="353.0" prefWidth="149.0">
+      <VBox alignment="BOTTOM_RIGHT" prefHeight="353.0" prefWidth="149.0" spacing="20.0">
          <children>
-            <Button onAction="#settingsClicked" mnemonicParsing="false" prefHeight="34.0" prefWidth="92.0" text="Settings" />
+            <Button mnemonicParsing="false" onAction="#temperatures" prefHeight="34.0" prefWidth="92.0" text="Temperatures" />
+            <Button mnemonicParsing="false" onAction="#settingsClicked" prefHeight="34.0" prefWidth="92.0" text="Settings" />
          </children>
          <HBox.margin>
             <Insets />
