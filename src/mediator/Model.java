@@ -1,5 +1,6 @@
 package mediator;
 
+import model.Temperature;
 import utility.observer.NamedPropertyChangeSubject;
 
 public interface Model extends NamedPropertyChangeSubject
@@ -12,6 +13,7 @@ public interface Model extends NamedPropertyChangeSubject
   void updateOutsideTemperature( double t);
   void addInternalTemperature(String id,double t);
   double getOutsideTemperature();
-
+  void fireRadiatorStateChange();
+  Temperature getCriticalValues();
 
 }

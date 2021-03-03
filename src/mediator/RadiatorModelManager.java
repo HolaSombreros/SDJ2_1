@@ -20,37 +20,40 @@ public class RadiatorModelManager implements Model
   {
     this.radiator = new Radiator();
     property = new PropertyChangeSupport(this);
-    criticalValues = new Temperature(30, 15);
+    criticalValues = new Temperature(25, 15);
   }
 
   @Override public void turnUp()
   {
     radiator.turnUp();
-    timeOut();
-    property.firePropertyChange("Radiator", null, getRadiatorStatus());
+    if (getHeatState() == 3) {
+      radiator.startTimer(this);
+    }
+    fireRadiatorStateChange();
   }
 
   @Override public void turnDown()
   {
     radiator.turnDown();
+    fireRadiatorStateChange();
+  }
+  
+  @Override
+  public void fireRadiatorStateChange() {
     property.firePropertyChange("Radiator", null, getRadiatorStatus());
   }
-
-  private void timeOut()
-  {
-    if (getHeatState() == 3)
-    {
-      radiator.timeOut();
-      property.firePropertyChange("Radiator", null, getRadiatorStatus());
-    }
+  
+  @Override
+  public Temperature getCriticalValues() {
+    return criticalValues;
   }
-
+  
   @Override public String getRadiatorStatus()
   {
     return radiator.getStatus();
   }
 
-  @Override public int getHeatState()
+  @Override synchronized public int getHeatState()
   {
     return radiator.getPower();
   }
@@ -61,21 +64,24 @@ public class RadiatorModelManager implements Model
     property.firePropertyChange("outsideTemperature", null, outsideTemp);
   }
 
-  @Override public void addInternalTemperature(String id, double t)
+  @Override public synchronized void addInternalTemperature(String id, double t)
   {
     internalTemp = t;
     property.firePropertyChange("internalTemperature", id, internalTemp);
+    if (internalTemp > criticalValues.getHighValue() ||
+        internalTemp < criticalValues.getLowValue()) {
+      property.firePropertyChange("criticalValues", null, internalTemp);
+    }
   }
 
-  @Override public double getOutsideTemperature()
+  @Override public synchronized double getOutsideTemperature()
   {
     return outsideTemp;
   }
-
+  
   @Override public void setCriticalValues(double highValue, double lowValue)
   {
     criticalValues.setValues(highValue, lowValue);
-    property.firePropertyChange("CriticalValues", highValue, lowValue);
   }
 
   @Override public void addListener(PropertyChangeListener listener)

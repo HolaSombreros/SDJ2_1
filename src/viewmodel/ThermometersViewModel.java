@@ -1,6 +1,8 @@
 package viewmodel;
 
 import javafx.application.Platform;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import mediator.Model;
@@ -11,23 +13,26 @@ import java.beans.PropertyChangeListener;
 public class ThermometersViewModel implements PropertyChangeListener
 {
   private StringProperty radiatorState;
-  private StringProperty thermometer0;
-  private StringProperty thermometer1;
-  private StringProperty thermometer2;
-  private StringProperty errorLabel;
+  private DoubleProperty thermometer0;
+  private DoubleProperty thermometer1;
+  private DoubleProperty thermometer2;
+  private StringProperty warningProperty;
 
   private Model model;
 
   public ThermometersViewModel(Model model)
   {
     this.model = model;
-    this.thermometer0 = new SimpleStringProperty();
-    this.thermometer1 = new SimpleStringProperty();
-    this.thermometer2 = new SimpleStringProperty();
-    this.errorLabel = new SimpleStringProperty();
-    this.radiatorState = new SimpleStringProperty();
+    this.thermometer0 = new SimpleDoubleProperty(0.0);
+    this.thermometer1 = new SimpleDoubleProperty(0.0);
+    this.thermometer2 = new SimpleDoubleProperty(0.0);
+    this.warningProperty = new SimpleStringProperty(null);
+    this.radiatorState = new SimpleStringProperty(model.getRadiatorStatus());
     model.addListener(this);
-    radiatorState.set(model.getRadiatorStatus());
+  }
+  
+  public void reset() {
+  
   }
 
   public StringProperty getRadiatorState()
@@ -35,51 +40,50 @@ public class ThermometersViewModel implements PropertyChangeListener
     return radiatorState;
   }
 
-  public StringProperty thermometer0Property()
+  public DoubleProperty thermometer0Property()
   {
     return thermometer0;
   }
 
-  public StringProperty thermometer1Property()
+  public DoubleProperty thermometer1Property()
   {
     return thermometer1;
   }
 
-  public StringProperty thermometer2Property()
+  public DoubleProperty thermometer2Property()
   {
     return thermometer2;
   }
-
-  public StringProperty errorLabelProperty()
-  {
-    return errorLabel;
+  
+  public StringProperty getWarningProperty() {
+    return warningProperty;
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
     Platform.runLater(() -> {
-      try
-      {
-        if (evt.getPropertyName().equals("internalTemperature"))
-        {
-          if (evt.getOldValue().equals("t1"))
-            thermometer1.set(evt.getNewValue() + " ");
-          else
-            thermometer2.set(evt.getNewValue() + " ");
-        }
-
-        if (evt.getPropertyName().equals("outsideTemperature"))
-        {
-          thermometer0.set((evt.getNewValue() + " "));
-        }
-        if (evt.getPropertyName().equals("Radiator"))
-        {
-          radiatorState.set(evt.getNewValue() + " ");
+      try {
+        switch (evt.getPropertyName()) {
+          case "internalTemperature":
+            if (evt.getOldValue().equals("t1")) {
+              thermometer1.set((Double) evt.getNewValue());
+            }
+            else {
+              thermometer2.set((Double) evt.getNewValue());
+            }
+            
+            // TODO: Check if temperature is above/below critical values, and if so, update the warning property.
+            break;
+          case "outsideTemperature":
+            thermometer0.set((Double) evt.getNewValue());
+            break;
+          case "Radiator":
+            radiatorState.set((String) evt.getNewValue());
+            break;
         }
       }
-      catch (Exception e)
-      {
-        errorLabel.set(e.getMessage());
+      catch (Exception e) {
+        warningProperty.set(e.getMessage());
       }
     });
   }

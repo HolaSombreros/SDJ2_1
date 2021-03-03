@@ -89,5 +89,4 @@ public class ViewHandler {
         }
         return settingsViewController.getRoot();
     }
-
 }
